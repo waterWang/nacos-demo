@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "nacos-demo", fallback = RemoteHystrix.class)
 public interface RemoteClient {
 
+    /**
+     * 服务提供者
+     *
+     * @return
+     */
     @GetMapping("/provider")
     String provider();
 }
