@@ -1,10 +1,12 @@
 package com.dazhen.nacosdemo.web;
 
-import com.dazhen.nacosdemo.service.RemoteClient;
+import com.dazhen.nacosdemo.common.Response;
+import com.dazhen.nacosdemo.dto.MailDTO;
+import com.dazhen.nacosdemo.service.ConchService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @program: monitor-plat
@@ -17,10 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class FeignController {
 
     @Autowired
-    private RemoteClient remoteClient;
+    private ConchService conchService;
 
-    @GetMapping("/feign")
-    public String feign() {
-        return remoteClient.provider();
+
+    @ApiOperation("邮件通知API ")
+    @PostMapping(value = "/notice/mail")
+    public Response mail(@RequestBody MailDTO dto) {
+        return conchService.sendMail(dto);
     }
+
+
 }

@@ -1,6 +1,8 @@
 package com.dazhen.nacosdemo.config;
 
-import com.dazhen.nacosdemo.service.RemoteClient;
+import com.dazhen.nacosdemo.common.Response;
+import com.dazhen.nacosdemo.dto.MailDTO;
+import com.dazhen.nacosdemo.service.ConchService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,11 +12,12 @@ import org.springframework.stereotype.Component;
  * @create: 2020-06-18 17:15
  */
 @Component
-public class RemoteHystrix implements RemoteClient {
+public class RemoteHystrix implements ConchService {
 
 
     @Override
-    public String provider() {
-        return "请求超时了";
+    public Response sendMail(MailDTO mail) {
+        return Response.error("超时");
     }
+
 }
