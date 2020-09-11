@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: nacos-demo
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.1.21.81:20072
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
