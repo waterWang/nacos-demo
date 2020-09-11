@@ -31,7 +31,7 @@ public class SwaggerConfig {
 
   private ApiInfo apiInfo() {
     return new ApiInfoBuilder()
-        .title("conch")
+        .title("nacos-demo")
         .description("")
         .termsOfServiceUrl(" ")
         .contact(new Contact(" matches-Team", null, null))

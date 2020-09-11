@@ -3,12 +3,19 @@ package com.dazhen.nacosdemo;
 import com.alibaba.fastjson.JSONObject;
 import com.dazhen.nacosdemo.utils.RestTemplateUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Test;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,27 +36,40 @@ public class RestTest {
      */
     @Test
     public void test() {
-        String url = "https://www.cnblogs.com/{id}/p/{pageName}.html";
-        String id = "jonban";
-        List<String> pages = new ArrayList<>();
-        pages.add("rest");
-        pages.add("jsoup");
-        pages.add("sms");
-        pages.add("rememberMe");
-        pages.add("properties");
-        pages.add("async");
+        CloseableHttpClient build = HttpClientBuilder.create().useSystemProperties().build();
 
-        for (String pageName : pages) {
-            ResponseEntity<String> entity = RestTemplateUtils.get(url, String.class, id, pageName);
-            System.out.println(entity.getStatusCode());
-            System.out.println(entity.getBody());
-        }
+        RestTemplate restClient = new RestTemplate(new HttpComponentsClientHttpRequestFactory(build));
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
+        messageConverters.add(new StringHttpMessageConverter());
+        messageConverters.add(new MappingJackson2HttpMessageConverter());
+        // set form converter
+        messageConverters.add(new FormHttpMessageConverter());
+        restClient.setMessageConverters(messageConverters);
 
+        String url = "http://10.1.21.81:20082/api/rest_j/v1/user/login";
+        JSONObject postData = new JSONObject();
+        postData.put("userName", "nanliu");
+        postData.put("password", "123.Wang");
+        ResponseEntity<JSONObject> json = restClient.postForEntity(url, postData, JSONObject.class);
+        System.out.println("result2====================" + json.getBody().getJSONObject("data").getString("userName"));
+
+
+        String url2 = "http://10.1.21.81:20048/api/rest_j/v1/entrance/execute";
+
+
+        JSONObject postData2 = new JSONObject();
+        postData2.put("method", "/api/rest_j/v1/entrance/execute");
+        postData2.put("params", new JSONObject());
+        postData2.put("executeApplicationName", "hive");
+        postData2.put("executionCode", "select * from preprocess.ds_txt_final");
+        postData2.put("runType", "sql");
+        JSONObject json2 = restClient.postForEntity(url2, postData2, JSONObject.class).getBody();
+        System.out.println("result2====================" + json2);
     }
 
     @Test
     public void testStr() {
-        String s="abcabcbb";
+        String s = "abcabcbb";
         int n = s.length(), ans = 0;
         int[] arr = new int[122];
         for (int j = 0, i = 0; j < n; j++) {
