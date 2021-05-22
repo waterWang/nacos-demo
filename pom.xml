@@ -55,26 +55,15 @@
             <version>${alibaba.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-                <exclusion>
                     <artifactId>archaius-core</artifactId>
                     <groupId>com.netflix.archaius</groupId>
                 </exclusion>
                 <exclusion>
-                    <artifactId>hystrix-core</artifactId>
-                    <groupId>com.netflix.hystrix</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-cloud-netflix-archaius</artifactId>
-                    <groupId>org.springframework.cloud</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-cloud-starter</artifactId>
+                    <artifactId>spring-cloud-context</artifactId>
                     <groupId>org.springframework.cloud</groupId>
                 </exclusion>
             </exclusions>
+
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -97,6 +86,7 @@
                     <groupId>org.springframework.cloud</groupId>
                 </exclusion>
             </exclusions>
+
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -108,34 +98,27 @@
                     <groupId>com.google.guava</groupId>
                 </exclusion>
                 <exclusion>
-                    <artifactId>archaius-core</artifactId>
-                    <groupId>com.netflix.archaius</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>hystrix-core</artifactId>
-                    <groupId>com.netflix.hystrix</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>servo-core</artifactId>
-                    <groupId>com.netflix.servo</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-cloud-netflix-archaius</artifactId>
-                    <groupId>org.springframework.cloud</groupId>
-                </exclusion>
-                <exclusion>
                     <artifactId>spring-cloud-starter</artifactId>
-                    <groupId>org.springframework.cloud</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-cloud-commons</artifactId>
                     <groupId>org.springframework.cloud</groupId>
                 </exclusion>
                 <exclusion>
                     <artifactId>spring-cloud-netflix-ribbon</artifactId>
                     <groupId>org.springframework.cloud</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>spring-cloud-netflix-archaius</artifactId>
+                    <groupId>org.springframework.cloud</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>servo-core</artifactId>
+                    <groupId>com.netflix.servo</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>hystrix-core</artifactId>
+                    <groupId>com.netflix.hystrix</groupId>
+                </exclusion>
             </exclusions>
+
         </dependency>
 
     </dependencies>
