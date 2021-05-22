@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @description: 小海螺服务
  * @author: water
  */
-@FeignClient(name = "conch", fallback = RemoteHystrix.class)
+@FeignClient(name = "conch-dev", fallback = RemoteHystrix.class)
 public interface ConchService {
 
     /**
