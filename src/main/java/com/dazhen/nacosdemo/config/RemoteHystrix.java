@@ -16,7 +16,7 @@ public class RemoteHystrix implements ConchService {
 
 
     @Override
-    public Response sendMail(MailDTO mail) {
+    public Response sendMail(MaipolDTO mail) {
         return Response.error("超时");
     }
 
