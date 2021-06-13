@@ -15,9 +15,8 @@ import org.springframework.stereotype.Component;
 public class RemoteHystrix implements ConchService {
 
 
-    @Override
-    public Response sendMail(MaipolDTO mail) {
-        return Response.error("超时");
-    }
-
+  @Override
+  public Response sendMail(MailDTO mail) {
+    return Response.error("超时");
+  }
 }
